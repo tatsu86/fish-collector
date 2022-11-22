@@ -14,6 +14,20 @@ services:
       TZ: 'Asia/Tokyo'
     ports:
       - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: fish-collector-phpmyadmin
+    links:
+      - db
+    ports:
+      - 3000:80
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=db
+      - PMA_USER=docker
+      - PMA_PASSWORD=docker
   php:
     build: ./php
     container_name: "fish-collector-php"

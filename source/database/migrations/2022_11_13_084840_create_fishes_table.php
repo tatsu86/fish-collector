@@ -15,6 +15,10 @@ class CreateFishesTable extends Migration
     {
         Schema::create('fishes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('max_size');
+            $table->string('memo');
+
             $table->timestamps();
         });
     }
